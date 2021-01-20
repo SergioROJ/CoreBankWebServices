@@ -1,0 +1,2628 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertAccount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="acc" type="tns:Account" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Account">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ExtensionData" type="tns:ExtensionDataObject" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Alias" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Number" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Owner" type="tns:Client" />
+          <s:element minOccurs="1" maxOccurs="1" name="OwnerId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="AccountType" type="tns:AccountType" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreationDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastUpdate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastTransaction" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="AccountManagerId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CurrencyType" type="tns:CurrencyType" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+          <s:element minOccurs="1" maxOccurs="1" name="Balance" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="YesterdayBalance" nillable="true" type="s:float" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ExtensionDataObject" />
+      <s:complexType name="Client">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ExtensionData" type="tns:ExtensionDataObject" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdentificationType" type="tns:IdentificationType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Identification" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Telephone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Gender" type="tns:Gender" />
+          <s:element minOccurs="1" maxOccurs="1" name="CurrencyType" type="tns:CurrencyType" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="IdentificationType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Cedula" />
+          <s:enumeration value="Passport" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="Gender">
+        <s:restriction base="s:string">
+          <s:enumeration value="Male" />
+          <s:enumeration value="Female" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="CurrencyType">
+        <s:list>
+          <s:simpleType>
+            <s:restriction base="s:string">
+              <s:enumeration value="DOP" />
+              <s:enumeration value="US" />
+              <s:enumeration value="EUR" />
+            </s:restriction>
+          </s:simpleType>
+        </s:list>
+      </s:simpleType>
+      <s:simpleType name="Status">
+        <s:restriction base="s:string">
+          <s:enumeration value="Inactive" />
+          <s:enumeration value="Active" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="AccountType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Saving" />
+          <s:enumeration value="Current" />
+          <s:enumeration value="Other" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="InsertAccountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertAccountResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAccount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="acc" type="tns:Account" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAccountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateAccountResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteAccount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteAccountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteAccountResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllAccounts">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllAccountsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllAccountsResult" type="tns:ArrayOfAccount" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAccount">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Account" nillable="true" type="tns:Account" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAccountById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAccountByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAccountByIdResult" type="tns:Account" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetByNumber">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="number" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetByNumberResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetByNumberResult" type="tns:Account" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAccountByClient">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="clientId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAccountByClientResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAccountByClientResult" type="tns:ArrayOfAccount" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAccountByCurrencyType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="currencyTypeId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAccountByCurrencyTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAccountByCurrencyTypeResult" type="tns:ArrayOfAccount" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertTransaction">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="transaction" type="tns:Transaction" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Transaction">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ExtensionData" type="tns:ExtensionDataObject" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Payer" type="tns:Client" />
+          <s:element minOccurs="1" maxOccurs="1" name="PayerId" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="PayerAccount" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PayerIdentification" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Payee" type="tns:Client" />
+          <s:element minOccurs="1" maxOccurs="1" name="PayeeId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PayeeProductType" type="tns:ProductType" />
+          <s:element minOccurs="0" maxOccurs="1" name="PayeeProductNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PayeeIdentification" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Bank" type="tns:Bank" />
+          <s:element minOccurs="1" maxOccurs="1" name="PayeeBankId" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="PayeeBankName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TransactionType" type="tns:TransactionTypeEnum" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreationDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Number" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Concept" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="CurrencyType" type="tns:CurrencyType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReferenceNumber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="EffectiveDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+          <s:element minOccurs="1" maxOccurs="1" name="PayerBalance" nillable="true" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="PayeeBalance" nillable="true" type="s:float" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ProductType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Account" />
+          <s:enumeration value="Card" />
+          <s:enumeration value="Loan" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="Bank">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ExtensionData" type="tns:ExtensionDataObject" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Identification" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="TransactionTypeEnum">
+        <s:restriction base="s:string">
+          <s:enumeration value="Deposit" />
+          <s:enumeration value="Retire" />
+          <s:enumeration value="BankTransfer" />
+          <s:enumeration value="NationalBankTransfer" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="InsertTransactionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertTransactionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateTransaction">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="transaction" type="tns:Transaction" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateTransactionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateTransactionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteTransaction">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteTransactionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteTransactionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllTransactions">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllTransactionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllTransactionsResult" type="tns:ArrayOfTransaction" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTransaction">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Transaction" nillable="true" type="tns:Transaction" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTransactionById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTransactionByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTransactionByIdResult" type="tns:Transaction" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTransactionByPayer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="payerId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTransactionByPayerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTransactionByPayerResult" type="tns:ArrayOfTransaction" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTransactionByPayeeId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PayeeId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTransactionByPayeeIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTransactionByPayeeIdResult" type="tns:ArrayOfTransaction" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTransactionByNumber">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="number" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTransactionByNumberResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTransactionByNumberResult" type="tns:Transaction" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetByReference">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="reference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetByReferenceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetByReferenceResult" type="tns:Transaction" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FilterBy">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="payerId" nillable="true" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="payerAccount" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="payerIdentication" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="payeeId" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="payeeProductTypeId" nillable="true" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="payeeProductNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="payeeIdentification" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="creationDateFrom" nillable="true" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="creationDateTo" nillable="true" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="effectiveDateFrom" nillable="true" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="effectiveDateTo" nillable="true" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FilterByResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FilterByResult" type="tns:ArrayOfTransaction" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertCard">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="card" type="tns:Card" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Card">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ExtensionData" type="tns:ExtensionDataObject" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Owner" type="tns:Client" />
+          <s:element minOccurs="1" maxOccurs="1" name="OwnerId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Number" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreationDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="CutOffDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="PaymentLimitDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+          <s:element minOccurs="1" maxOccurs="1" name="Limit" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="CurrencyTypes" type="tns:CurrencyType" />
+          <s:element minOccurs="1" maxOccurs="1" name="Available" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="Balance" nillable="true" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="CutOffBalance" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="MinimumPayment" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExpiredAmount" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExpiredBill" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastBalance" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastPaymentDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastPayment" type="s:float" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertCardResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertCardResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdatetCard">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="card" type="tns:Card" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdatetCardResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdatetCardResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteCard">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteCardResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteCardResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllCards">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllCardsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllCardsResult" type="tns:ArrayOfCard" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCard">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Card" nillable="true" type="tns:Card" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCardById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCardByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCardByIdResult" type="tns:Card" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCardByClient">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="clientId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCardByClientResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCardByClientResult" type="tns:ArrayOfCard" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCardByNumber">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="number" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCardByNumberResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCardByNumberResult" type="tns:Card" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertClient">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="client" type="tns:Client" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertClientResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertClientResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateClient">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="client" type="tns:Client" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateClientResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateClientResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteClient">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteClientResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteClientResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllClients">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllClientsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllClientsResult" type="tns:ArrayOfClient" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfClient">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Client" nillable="true" type="tns:Client" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetClientById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="clientId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClientByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetClientByIdResult" type="tns:Client" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetByIdentification">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="identification" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetByIdentificationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetByIdentificationResult" type="tns:Client" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertEmployeeUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:EmployeeUser" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="EmployeeUser">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ExtensionData" type="tns:ExtensionDataObject" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Employee" type="tns:Employee" />
+          <s:element minOccurs="1" maxOccurs="1" name="EmployeeId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Role" type="tns:Role" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Employee">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ExtensionData" type="tns:ExtensionDataObject" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="Role">
+        <s:restriction base="s:string">
+          <s:enumeration value="Administrator" />
+          <s:enumeration value="Crud" />
+          <s:enumeration value="View" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="InsertEmployeeUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertEmployeeUserResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateEmployeeUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:EmployeeUser" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateEmployeeUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateEmployeeUserResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateCredentials">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateCredentialsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ValidateCredentialsResult" type="tns:EmployeeUser" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteEmployeeUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteEmployeeUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteEmployeeUserResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllEmployeesUsers">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllEmployeesUsersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllEmployeesUsersResult" type="tns:ArrayOfEmployeeUser" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfEmployeeUser">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EmployeeUser" nillable="true" type="tns:EmployeeUser" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetEmployeeUserById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmployeeUserByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEmployeeUserByIdResult" type="tns:EmployeeUser" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmployeeUserByEmployeeId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="employeeId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmployeeUserByEmployeeIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEmployeeUserByEmployeeIdResult" type="tns:EmployeeUser" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetByUserName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetByUserNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetByUserNameResult" type="tns:EmployeeUser" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmployeeUserByEmail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmployeeUserByEmailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEmployeeUserByEmailResult" type="tns:EmployeeUser" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmployeeUserByEmployeeRole">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="roleId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmployeeUserByEmployeeRoleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEmployeeUserByEmployeeRoleResult" type="tns:ArrayOfEmployeeUser" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllBanks">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllBanksResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllBanksResult" type="tns:ArrayOfBank" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfBank">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Bank" nillable="true" type="tns:Bank" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetBankById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBankByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBankByIdResult" type="tns:Bank" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertTransactionType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="type" type="tns:TransactionType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TransactionType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ExtensionData" type="tns:ExtensionDataObject" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertTransactionTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertTransactionTypeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateTransactionType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="type" type="tns:TransactionType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateTransactionTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateTransactionTypeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllTransactionTypes">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllTransactionTypesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllTransactionTypesResult" type="tns:ArrayOfTransactionType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTransactionType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TransactionType" nillable="true" type="tns:TransactionType" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTransactionTypeById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTransactionTypeByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTransactionTypeByIdResult" type="tns:TransactionType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTransactionTypeByName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTransactionTypeByNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTransactionTypeByNameResult" type="tns:TransactionType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertClientUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:User" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="User">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ExtensionData" type="tns:ExtensionDataObject" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Client" type="tns:Client" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClientId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertClientUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertClientUserResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateClientUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:User" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateClientUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateClientUserResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateUserCredentials">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateUserCredentialsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ValidateUserCredentialsResult" type="tns:User" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteClientUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteClientUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteClientUserResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllClientUsers">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllClientUsersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllClientUsersResult" type="tns:ArrayOfUser" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfUser">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="User" nillable="true" type="tns:User" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetClientUserById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClientUserByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetClientUserByIdResult" type="tns:User" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClientUserByUserName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClientUserByUserNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetClientUserByUserNameResult" type="tns:User" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserClientByEmail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserClientByEmailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserClientByEmailResult" type="tns:User" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertAccountSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertAccount" />
+  </wsdl:message>
+  <wsdl:message name="InsertAccountSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertAccountResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAccountSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateAccount" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAccountSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateAccountResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteAccountSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteAccount" />
+  </wsdl:message>
+  <wsdl:message name="DeleteAccountSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteAccountResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllAccountsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllAccounts" />
+  </wsdl:message>
+  <wsdl:message name="GetAllAccountsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllAccountsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAccountByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAccountById" />
+  </wsdl:message>
+  <wsdl:message name="GetAccountByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAccountByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetByNumberSoapIn">
+    <wsdl:part name="parameters" element="tns:GetByNumber" />
+  </wsdl:message>
+  <wsdl:message name="GetByNumberSoapOut">
+    <wsdl:part name="parameters" element="tns:GetByNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAccountByClientSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAccountByClient" />
+  </wsdl:message>
+  <wsdl:message name="GetAccountByClientSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAccountByClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAccountByCurrencyTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAccountByCurrencyType" />
+  </wsdl:message>
+  <wsdl:message name="GetAccountByCurrencyTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAccountByCurrencyTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertTransactionSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertTransaction" />
+  </wsdl:message>
+  <wsdl:message name="InsertTransactionSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertTransactionResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTransactionSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateTransaction" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTransactionSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateTransactionResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteTransactionSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteTransaction" />
+  </wsdl:message>
+  <wsdl:message name="DeleteTransactionSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteTransactionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllTransactionsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllTransactions" />
+  </wsdl:message>
+  <wsdl:message name="GetAllTransactionsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllTransactionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTransactionByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTransactionById" />
+  </wsdl:message>
+  <wsdl:message name="GetTransactionByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTransactionByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTransactionByPayerSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTransactionByPayer" />
+  </wsdl:message>
+  <wsdl:message name="GetTransactionByPayerSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTransactionByPayerResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTransactionByPayeeIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTransactionByPayeeId" />
+  </wsdl:message>
+  <wsdl:message name="GetTransactionByPayeeIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTransactionByPayeeIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTransactionByNumberSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTransactionByNumber" />
+  </wsdl:message>
+  <wsdl:message name="GetTransactionByNumberSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTransactionByNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetByReferenceSoapIn">
+    <wsdl:part name="parameters" element="tns:GetByReference" />
+  </wsdl:message>
+  <wsdl:message name="GetByReferenceSoapOut">
+    <wsdl:part name="parameters" element="tns:GetByReferenceResponse" />
+  </wsdl:message>
+  <wsdl:message name="FilterBySoapIn">
+    <wsdl:part name="parameters" element="tns:FilterBy" />
+  </wsdl:message>
+  <wsdl:message name="FilterBySoapOut">
+    <wsdl:part name="parameters" element="tns:FilterByResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertCardSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertCard" />
+  </wsdl:message>
+  <wsdl:message name="InsertCardSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdatetCardSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdatetCard" />
+  </wsdl:message>
+  <wsdl:message name="UpdatetCardSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdatetCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCardSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteCard" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCardSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCardsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllCards" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCardsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllCardsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCardByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCardById" />
+  </wsdl:message>
+  <wsdl:message name="GetCardByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCardByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCardByClientSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCardByClient" />
+  </wsdl:message>
+  <wsdl:message name="GetCardByClientSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCardByClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCardByNumberSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCardByNumber" />
+  </wsdl:message>
+  <wsdl:message name="GetCardByNumberSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCardByNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertClientSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertClient" />
+  </wsdl:message>
+  <wsdl:message name="InsertClientSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateClientSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateClient" />
+  </wsdl:message>
+  <wsdl:message name="UpdateClientSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteClientSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteClient" />
+  </wsdl:message>
+  <wsdl:message name="DeleteClientSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllClientsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllClients" />
+  </wsdl:message>
+  <wsdl:message name="GetAllClientsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllClientsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetClientByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetClientById" />
+  </wsdl:message>
+  <wsdl:message name="GetClientByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetClientByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetByIdentificationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetByIdentification" />
+  </wsdl:message>
+  <wsdl:message name="GetByIdentificationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetByIdentificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertEmployeeUserSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertEmployeeUser" />
+  </wsdl:message>
+  <wsdl:message name="InsertEmployeeUserSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertEmployeeUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateEmployeeUserSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateEmployeeUser" />
+  </wsdl:message>
+  <wsdl:message name="UpdateEmployeeUserSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateEmployeeUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidateCredentialsSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidateCredentials" />
+  </wsdl:message>
+  <wsdl:message name="ValidateCredentialsSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidateCredentialsResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteEmployeeUserSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteEmployeeUser" />
+  </wsdl:message>
+  <wsdl:message name="DeleteEmployeeUserSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteEmployeeUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllEmployeesUsersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllEmployeesUsers" />
+  </wsdl:message>
+  <wsdl:message name="GetAllEmployeesUsersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllEmployeesUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEmployeeUserByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEmployeeUserById" />
+  </wsdl:message>
+  <wsdl:message name="GetEmployeeUserByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEmployeeUserByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEmployeeUserByEmployeeIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEmployeeUserByEmployeeId" />
+  </wsdl:message>
+  <wsdl:message name="GetEmployeeUserByEmployeeIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEmployeeUserByEmployeeIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetByUserNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetByUserName" />
+  </wsdl:message>
+  <wsdl:message name="GetByUserNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetByUserNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEmployeeUserByEmailSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEmployeeUserByEmail" />
+  </wsdl:message>
+  <wsdl:message name="GetEmployeeUserByEmailSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEmployeeUserByEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEmployeeUserByEmployeeRoleSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEmployeeUserByEmployeeRole" />
+  </wsdl:message>
+  <wsdl:message name="GetEmployeeUserByEmployeeRoleSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEmployeeUserByEmployeeRoleResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllBanksSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllBanks" />
+  </wsdl:message>
+  <wsdl:message name="GetAllBanksSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllBanksResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBankByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBankById" />
+  </wsdl:message>
+  <wsdl:message name="GetBankByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBankByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertTransactionTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertTransactionType" />
+  </wsdl:message>
+  <wsdl:message name="InsertTransactionTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertTransactionTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTransactionTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateTransactionType" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTransactionTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateTransactionTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllTransactionTypesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllTransactionTypes" />
+  </wsdl:message>
+  <wsdl:message name="GetAllTransactionTypesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllTransactionTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTransactionTypeByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTransactionTypeById" />
+  </wsdl:message>
+  <wsdl:message name="GetTransactionTypeByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTransactionTypeByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTransactionTypeByNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTransactionTypeByName" />
+  </wsdl:message>
+  <wsdl:message name="GetTransactionTypeByNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTransactionTypeByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertClientUserSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertClientUser" />
+  </wsdl:message>
+  <wsdl:message name="InsertClientUserSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertClientUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateClientUserSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateClientUser" />
+  </wsdl:message>
+  <wsdl:message name="UpdateClientUserSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateClientUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidateUserCredentialsSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidateUserCredentials" />
+  </wsdl:message>
+  <wsdl:message name="ValidateUserCredentialsSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidateUserCredentialsResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteClientUserSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteClientUser" />
+  </wsdl:message>
+  <wsdl:message name="DeleteClientUserSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteClientUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllClientUsersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllClientUsers" />
+  </wsdl:message>
+  <wsdl:message name="GetAllClientUsersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllClientUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetClientUserByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetClientUserById" />
+  </wsdl:message>
+  <wsdl:message name="GetClientUserByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetClientUserByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetClientUserByUserNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetClientUserByUserName" />
+  </wsdl:message>
+  <wsdl:message name="GetClientUserByUserNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetClientUserByUserNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserClientByEmailSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserClientByEmail" />
+  </wsdl:message>
+  <wsdl:message name="GetUserClientByEmailSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserClientByEmailResponse" />
+  </wsdl:message>
+  <wsdl:portType name="CoreWebServiceSoap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertAccount">
+      <wsdl:input message="tns:InsertAccountSoapIn" />
+      <wsdl:output message="tns:InsertAccountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAccount">
+      <wsdl:input message="tns:UpdateAccountSoapIn" />
+      <wsdl:output message="tns:UpdateAccountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAccount">
+      <wsdl:input message="tns:DeleteAccountSoapIn" />
+      <wsdl:output message="tns:DeleteAccountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAccounts">
+      <wsdl:input message="tns:GetAllAccountsSoapIn" />
+      <wsdl:output message="tns:GetAllAccountsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountById">
+      <wsdl:input message="tns:GetAccountByIdSoapIn" />
+      <wsdl:output message="tns:GetAccountByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetByNumber">
+      <wsdl:input message="tns:GetByNumberSoapIn" />
+      <wsdl:output message="tns:GetByNumberSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountByClient">
+      <wsdl:input message="tns:GetAccountByClientSoapIn" />
+      <wsdl:output message="tns:GetAccountByClientSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountByCurrencyType">
+      <wsdl:input message="tns:GetAccountByCurrencyTypeSoapIn" />
+      <wsdl:output message="tns:GetAccountByCurrencyTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertTransaction">
+      <wsdl:input message="tns:InsertTransactionSoapIn" />
+      <wsdl:output message="tns:InsertTransactionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTransaction">
+      <wsdl:input message="tns:UpdateTransactionSoapIn" />
+      <wsdl:output message="tns:UpdateTransactionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTransaction">
+      <wsdl:input message="tns:DeleteTransactionSoapIn" />
+      <wsdl:output message="tns:DeleteTransactionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTransactions">
+      <wsdl:input message="tns:GetAllTransactionsSoapIn" />
+      <wsdl:output message="tns:GetAllTransactionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionById">
+      <wsdl:input message="tns:GetTransactionByIdSoapIn" />
+      <wsdl:output message="tns:GetTransactionByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionByPayer">
+      <wsdl:input message="tns:GetTransactionByPayerSoapIn" />
+      <wsdl:output message="tns:GetTransactionByPayerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionByPayeeId">
+      <wsdl:input message="tns:GetTransactionByPayeeIdSoapIn" />
+      <wsdl:output message="tns:GetTransactionByPayeeIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionByNumber">
+      <wsdl:input message="tns:GetTransactionByNumberSoapIn" />
+      <wsdl:output message="tns:GetTransactionByNumberSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetByReference">
+      <wsdl:input message="tns:GetByReferenceSoapIn" />
+      <wsdl:output message="tns:GetByReferenceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FilterBy">
+      <wsdl:input message="tns:FilterBySoapIn" />
+      <wsdl:output message="tns:FilterBySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertCard">
+      <wsdl:input message="tns:InsertCardSoapIn" />
+      <wsdl:output message="tns:InsertCardSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatetCard">
+      <wsdl:input message="tns:UpdatetCardSoapIn" />
+      <wsdl:output message="tns:UpdatetCardSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCard">
+      <wsdl:input message="tns:DeleteCardSoapIn" />
+      <wsdl:output message="tns:DeleteCardSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCards">
+      <wsdl:input message="tns:GetAllCardsSoapIn" />
+      <wsdl:output message="tns:GetAllCardsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCardById">
+      <wsdl:input message="tns:GetCardByIdSoapIn" />
+      <wsdl:output message="tns:GetCardByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCardByClient">
+      <wsdl:input message="tns:GetCardByClientSoapIn" />
+      <wsdl:output message="tns:GetCardByClientSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCardByNumber">
+      <wsdl:input message="tns:GetCardByNumberSoapIn" />
+      <wsdl:output message="tns:GetCardByNumberSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertClient">
+      <wsdl:input message="tns:InsertClientSoapIn" />
+      <wsdl:output message="tns:InsertClientSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateClient">
+      <wsdl:input message="tns:UpdateClientSoapIn" />
+      <wsdl:output message="tns:UpdateClientSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteClient">
+      <wsdl:input message="tns:DeleteClientSoapIn" />
+      <wsdl:output message="tns:DeleteClientSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllClients">
+      <wsdl:input message="tns:GetAllClientsSoapIn" />
+      <wsdl:output message="tns:GetAllClientsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientById">
+      <wsdl:input message="tns:GetClientByIdSoapIn" />
+      <wsdl:output message="tns:GetClientByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetByIdentification">
+      <wsdl:input message="tns:GetByIdentificationSoapIn" />
+      <wsdl:output message="tns:GetByIdentificationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertEmployeeUser">
+      <wsdl:input message="tns:InsertEmployeeUserSoapIn" />
+      <wsdl:output message="tns:InsertEmployeeUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEmployeeUser">
+      <wsdl:input message="tns:UpdateEmployeeUserSoapIn" />
+      <wsdl:output message="tns:UpdateEmployeeUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateCredentials">
+      <wsdl:input message="tns:ValidateCredentialsSoapIn" />
+      <wsdl:output message="tns:ValidateCredentialsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteEmployeeUser">
+      <wsdl:input message="tns:DeleteEmployeeUserSoapIn" />
+      <wsdl:output message="tns:DeleteEmployeeUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllEmployeesUsers">
+      <wsdl:input message="tns:GetAllEmployeesUsersSoapIn" />
+      <wsdl:output message="tns:GetAllEmployeesUsersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeUserById">
+      <wsdl:input message="tns:GetEmployeeUserByIdSoapIn" />
+      <wsdl:output message="tns:GetEmployeeUserByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeUserByEmployeeId">
+      <wsdl:input message="tns:GetEmployeeUserByEmployeeIdSoapIn" />
+      <wsdl:output message="tns:GetEmployeeUserByEmployeeIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetByUserName">
+      <wsdl:input message="tns:GetByUserNameSoapIn" />
+      <wsdl:output message="tns:GetByUserNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeUserByEmail">
+      <wsdl:input message="tns:GetEmployeeUserByEmailSoapIn" />
+      <wsdl:output message="tns:GetEmployeeUserByEmailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeUserByEmployeeRole">
+      <wsdl:input message="tns:GetEmployeeUserByEmployeeRoleSoapIn" />
+      <wsdl:output message="tns:GetEmployeeUserByEmployeeRoleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllBanks">
+      <wsdl:input message="tns:GetAllBanksSoapIn" />
+      <wsdl:output message="tns:GetAllBanksSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBankById">
+      <wsdl:input message="tns:GetBankByIdSoapIn" />
+      <wsdl:output message="tns:GetBankByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertTransactionType">
+      <wsdl:input message="tns:InsertTransactionTypeSoapIn" />
+      <wsdl:output message="tns:InsertTransactionTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTransactionType">
+      <wsdl:input message="tns:UpdateTransactionTypeSoapIn" />
+      <wsdl:output message="tns:UpdateTransactionTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTransactionTypes">
+      <wsdl:input message="tns:GetAllTransactionTypesSoapIn" />
+      <wsdl:output message="tns:GetAllTransactionTypesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionTypeById">
+      <wsdl:input message="tns:GetTransactionTypeByIdSoapIn" />
+      <wsdl:output message="tns:GetTransactionTypeByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionTypeByName">
+      <wsdl:input message="tns:GetTransactionTypeByNameSoapIn" />
+      <wsdl:output message="tns:GetTransactionTypeByNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertClientUser">
+      <wsdl:input message="tns:InsertClientUserSoapIn" />
+      <wsdl:output message="tns:InsertClientUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateClientUser">
+      <wsdl:input message="tns:UpdateClientUserSoapIn" />
+      <wsdl:output message="tns:UpdateClientUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateUserCredentials">
+      <wsdl:input message="tns:ValidateUserCredentialsSoapIn" />
+      <wsdl:output message="tns:ValidateUserCredentialsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteClientUser">
+      <wsdl:input message="tns:DeleteClientUserSoapIn" />
+      <wsdl:output message="tns:DeleteClientUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllClientUsers">
+      <wsdl:input message="tns:GetAllClientUsersSoapIn" />
+      <wsdl:output message="tns:GetAllClientUsersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientUserById">
+      <wsdl:input message="tns:GetClientUserByIdSoapIn" />
+      <wsdl:output message="tns:GetClientUserByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientUserByUserName">
+      <wsdl:input message="tns:GetClientUserByUserNameSoapIn" />
+      <wsdl:output message="tns:GetClientUserByUserNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserClientByEmail">
+      <wsdl:input message="tns:GetUserClientByEmailSoapIn" />
+      <wsdl:output message="tns:GetUserClientByEmailSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CoreWebServiceSoap" type="tns:CoreWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertAccount">
+      <soap:operation soapAction="http://tempuri.org/InsertAccount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAccount">
+      <soap:operation soapAction="http://tempuri.org/UpdateAccount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAccount">
+      <soap:operation soapAction="http://tempuri.org/DeleteAccount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAccounts">
+      <soap:operation soapAction="http://tempuri.org/GetAllAccounts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountById">
+      <soap:operation soapAction="http://tempuri.org/GetAccountById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetByNumber">
+      <soap:operation soapAction="http://tempuri.org/GetByNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountByClient">
+      <soap:operation soapAction="http://tempuri.org/GetAccountByClient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountByCurrencyType">
+      <soap:operation soapAction="http://tempuri.org/GetAccountByCurrencyType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertTransaction">
+      <soap:operation soapAction="http://tempuri.org/InsertTransaction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTransaction">
+      <soap:operation soapAction="http://tempuri.org/UpdateTransaction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTransaction">
+      <soap:operation soapAction="http://tempuri.org/DeleteTransaction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTransactions">
+      <soap:operation soapAction="http://tempuri.org/GetAllTransactions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionById">
+      <soap:operation soapAction="http://tempuri.org/GetTransactionById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionByPayer">
+      <soap:operation soapAction="http://tempuri.org/GetTransactionByPayer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionByPayeeId">
+      <soap:operation soapAction="http://tempuri.org/GetTransactionByPayeeId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionByNumber">
+      <soap:operation soapAction="http://tempuri.org/GetTransactionByNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetByReference">
+      <soap:operation soapAction="http://tempuri.org/GetByReference" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FilterBy">
+      <soap:operation soapAction="http://tempuri.org/FilterBy" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertCard">
+      <soap:operation soapAction="http://tempuri.org/InsertCard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatetCard">
+      <soap:operation soapAction="http://tempuri.org/UpdatetCard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCard">
+      <soap:operation soapAction="http://tempuri.org/DeleteCard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCards">
+      <soap:operation soapAction="http://tempuri.org/GetAllCards" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCardById">
+      <soap:operation soapAction="http://tempuri.org/GetCardById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCardByClient">
+      <soap:operation soapAction="http://tempuri.org/GetCardByClient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCardByNumber">
+      <soap:operation soapAction="http://tempuri.org/GetCardByNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertClient">
+      <soap:operation soapAction="http://tempuri.org/InsertClient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateClient">
+      <soap:operation soapAction="http://tempuri.org/UpdateClient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteClient">
+      <soap:operation soapAction="http://tempuri.org/DeleteClient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllClients">
+      <soap:operation soapAction="http://tempuri.org/GetAllClients" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientById">
+      <soap:operation soapAction="http://tempuri.org/GetClientById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetByIdentification">
+      <soap:operation soapAction="http://tempuri.org/GetByIdentification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertEmployeeUser">
+      <soap:operation soapAction="http://tempuri.org/InsertEmployeeUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEmployeeUser">
+      <soap:operation soapAction="http://tempuri.org/UpdateEmployeeUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateCredentials">
+      <soap:operation soapAction="http://tempuri.org/ValidateCredentials" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteEmployeeUser">
+      <soap:operation soapAction="http://tempuri.org/DeleteEmployeeUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllEmployeesUsers">
+      <soap:operation soapAction="http://tempuri.org/GetAllEmployeesUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeUserById">
+      <soap:operation soapAction="http://tempuri.org/GetEmployeeUserById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeUserByEmployeeId">
+      <soap:operation soapAction="http://tempuri.org/GetEmployeeUserByEmployeeId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetByUserName">
+      <soap:operation soapAction="http://tempuri.org/GetByUserName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeUserByEmail">
+      <soap:operation soapAction="http://tempuri.org/GetEmployeeUserByEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeUserByEmployeeRole">
+      <soap:operation soapAction="http://tempuri.org/GetEmployeeUserByEmployeeRole" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllBanks">
+      <soap:operation soapAction="http://tempuri.org/GetAllBanks" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBankById">
+      <soap:operation soapAction="http://tempuri.org/GetBankById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertTransactionType">
+      <soap:operation soapAction="http://tempuri.org/InsertTransactionType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTransactionType">
+      <soap:operation soapAction="http://tempuri.org/UpdateTransactionType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTransactionTypes">
+      <soap:operation soapAction="http://tempuri.org/GetAllTransactionTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionTypeById">
+      <soap:operation soapAction="http://tempuri.org/GetTransactionTypeById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionTypeByName">
+      <soap:operation soapAction="http://tempuri.org/GetTransactionTypeByName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertClientUser">
+      <soap:operation soapAction="http://tempuri.org/InsertClientUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateClientUser">
+      <soap:operation soapAction="http://tempuri.org/UpdateClientUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateUserCredentials">
+      <soap:operation soapAction="http://tempuri.org/ValidateUserCredentials" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteClientUser">
+      <soap:operation soapAction="http://tempuri.org/DeleteClientUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllClientUsers">
+      <soap:operation soapAction="http://tempuri.org/GetAllClientUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientUserById">
+      <soap:operation soapAction="http://tempuri.org/GetClientUserById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientUserByUserName">
+      <soap:operation soapAction="http://tempuri.org/GetClientUserByUserName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserClientByEmail">
+      <soap:operation soapAction="http://tempuri.org/GetUserClientByEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CoreWebServiceSoap12" type="tns:CoreWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertAccount">
+      <soap12:operation soapAction="http://tempuri.org/InsertAccount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAccount">
+      <soap12:operation soapAction="http://tempuri.org/UpdateAccount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAccount">
+      <soap12:operation soapAction="http://tempuri.org/DeleteAccount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAccounts">
+      <soap12:operation soapAction="http://tempuri.org/GetAllAccounts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountById">
+      <soap12:operation soapAction="http://tempuri.org/GetAccountById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetByNumber">
+      <soap12:operation soapAction="http://tempuri.org/GetByNumber" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountByClient">
+      <soap12:operation soapAction="http://tempuri.org/GetAccountByClient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountByCurrencyType">
+      <soap12:operation soapAction="http://tempuri.org/GetAccountByCurrencyType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertTransaction">
+      <soap12:operation soapAction="http://tempuri.org/InsertTransaction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTransaction">
+      <soap12:operation soapAction="http://tempuri.org/UpdateTransaction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTransaction">
+      <soap12:operation soapAction="http://tempuri.org/DeleteTransaction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTransactions">
+      <soap12:operation soapAction="http://tempuri.org/GetAllTransactions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionById">
+      <soap12:operation soapAction="http://tempuri.org/GetTransactionById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionByPayer">
+      <soap12:operation soapAction="http://tempuri.org/GetTransactionByPayer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionByPayeeId">
+      <soap12:operation soapAction="http://tempuri.org/GetTransactionByPayeeId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionByNumber">
+      <soap12:operation soapAction="http://tempuri.org/GetTransactionByNumber" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetByReference">
+      <soap12:operation soapAction="http://tempuri.org/GetByReference" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FilterBy">
+      <soap12:operation soapAction="http://tempuri.org/FilterBy" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertCard">
+      <soap12:operation soapAction="http://tempuri.org/InsertCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatetCard">
+      <soap12:operation soapAction="http://tempuri.org/UpdatetCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCard">
+      <soap12:operation soapAction="http://tempuri.org/DeleteCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCards">
+      <soap12:operation soapAction="http://tempuri.org/GetAllCards" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCardById">
+      <soap12:operation soapAction="http://tempuri.org/GetCardById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCardByClient">
+      <soap12:operation soapAction="http://tempuri.org/GetCardByClient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCardByNumber">
+      <soap12:operation soapAction="http://tempuri.org/GetCardByNumber" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertClient">
+      <soap12:operation soapAction="http://tempuri.org/InsertClient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateClient">
+      <soap12:operation soapAction="http://tempuri.org/UpdateClient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteClient">
+      <soap12:operation soapAction="http://tempuri.org/DeleteClient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllClients">
+      <soap12:operation soapAction="http://tempuri.org/GetAllClients" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientById">
+      <soap12:operation soapAction="http://tempuri.org/GetClientById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetByIdentification">
+      <soap12:operation soapAction="http://tempuri.org/GetByIdentification" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertEmployeeUser">
+      <soap12:operation soapAction="http://tempuri.org/InsertEmployeeUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEmployeeUser">
+      <soap12:operation soapAction="http://tempuri.org/UpdateEmployeeUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateCredentials">
+      <soap12:operation soapAction="http://tempuri.org/ValidateCredentials" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteEmployeeUser">
+      <soap12:operation soapAction="http://tempuri.org/DeleteEmployeeUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllEmployeesUsers">
+      <soap12:operation soapAction="http://tempuri.org/GetAllEmployeesUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeUserById">
+      <soap12:operation soapAction="http://tempuri.org/GetEmployeeUserById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeUserByEmployeeId">
+      <soap12:operation soapAction="http://tempuri.org/GetEmployeeUserByEmployeeId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetByUserName">
+      <soap12:operation soapAction="http://tempuri.org/GetByUserName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeUserByEmail">
+      <soap12:operation soapAction="http://tempuri.org/GetEmployeeUserByEmail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeUserByEmployeeRole">
+      <soap12:operation soapAction="http://tempuri.org/GetEmployeeUserByEmployeeRole" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllBanks">
+      <soap12:operation soapAction="http://tempuri.org/GetAllBanks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBankById">
+      <soap12:operation soapAction="http://tempuri.org/GetBankById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertTransactionType">
+      <soap12:operation soapAction="http://tempuri.org/InsertTransactionType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTransactionType">
+      <soap12:operation soapAction="http://tempuri.org/UpdateTransactionType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTransactionTypes">
+      <soap12:operation soapAction="http://tempuri.org/GetAllTransactionTypes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionTypeById">
+      <soap12:operation soapAction="http://tempuri.org/GetTransactionTypeById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionTypeByName">
+      <soap12:operation soapAction="http://tempuri.org/GetTransactionTypeByName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertClientUser">
+      <soap12:operation soapAction="http://tempuri.org/InsertClientUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateClientUser">
+      <soap12:operation soapAction="http://tempuri.org/UpdateClientUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateUserCredentials">
+      <soap12:operation soapAction="http://tempuri.org/ValidateUserCredentials" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteClientUser">
+      <soap12:operation soapAction="http://tempuri.org/DeleteClientUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllClientUsers">
+      <soap12:operation soapAction="http://tempuri.org/GetAllClientUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientUserById">
+      <soap12:operation soapAction="http://tempuri.org/GetClientUserById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientUserByUserName">
+      <soap12:operation soapAction="http://tempuri.org/GetClientUserByUserName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserClientByEmail">
+      <soap12:operation soapAction="http://tempuri.org/GetUserClientByEmail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CoreWebService">
+    <wsdl:port name="CoreWebServiceSoap" binding="tns:CoreWebServiceSoap">
+      <soap:address location="https://integracionwebserviceproyecto.azurewebsites.net/CoreWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CoreWebServiceSoap12" binding="tns:CoreWebServiceSoap12">
+      <soap12:address location="https://integracionwebserviceproyecto.azurewebsites.net/CoreWebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

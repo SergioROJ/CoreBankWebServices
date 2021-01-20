@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreBankWebServices", "CoreBankWebServices\CoreBankWebServices.csproj", "{107D1210-35B0-48F9-A5DA-106CC39FB128}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "probandoCoreWsProyectoFinal", "probandoCoreWsProyectoFinal\probandoCoreWsProyectoFinal.csproj", "{F5ED9572-919D-4147-BCE0-1ED2F3033B93}"
+	ProjectSection(ProjectDependencies) = postProject
+		{107D1210-35B0-48F9-A5DA-106CC39FB128} = {107D1210-35B0-48F9-A5DA-106CC39FB128}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{107D1210-35B0-48F9-A5DA-106CC39FB128}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{107D1210-35B0-48F9-A5DA-106CC39FB128}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{107D1210-35B0-48F9-A5DA-106CC39FB128}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{107D1210-35B0-48F9-A5DA-106CC39FB128}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5ED9572-919D-4147-BCE0-1ED2F3033B93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5ED9572-919D-4147-BCE0-1ED2F3033B93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5ED9572-919D-4147-BCE0-1ED2F3033B93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5ED9572-919D-4147-BCE0-1ED2F3033B93}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {266B9463-C7EB-4312-B0FE-69CBB0714D0C}
+	EndGlobalSection
+EndGlobal
